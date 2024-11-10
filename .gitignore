@@ -40,6 +40,8 @@
 *.toc
 *.aux
 
+# notebooks
+*.ipynb_checkpoints
 # Ignore the build directory
 build/
 
