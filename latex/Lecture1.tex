@@ -111,25 +111,30 @@ The \bbonu\ Lonely Hearts Club Band} % Change the lecture topic right here!
 \end{frame}
 }
 
-%\begin{frame}{Majorana Neutrinos in one slide}
-%%\begin{columns}
-%%\column{0.40\textwidth}
-% \begin{textblock*}{4cm}(1.7cm,-2.7cm)
-%\includegraphics[scale=0.30]{majorananu.png}
-% \end{textblock*}
-%
-%% \column{0.5\textwidth}
-%%The neutrino is made, like in the Escher’s tableau of black and white chevaliers.   
-%%\end{columns}
-%\end{frame}
-%
-%%%%
-%
-%\begin{frame}{Majorana neutrinos \& a recipe for the Universe}
-%\includegraphics[scale=0.40]{Universe.png}
-%\end{frame}
-%
+\begin{frame}{Majorana Neutrinos in one slide}
+%\begin{columns}
+%\column{0.40\textwidth}
+ \begin{textblock*}{4cm}(1.7cm,-2.7cm)
+\includegraphics[scale=0.30]{majorananu.png}
+ \end{textblock*}
+
+% \column{0.5\textwidth}
+%The neutrino is made, like in the Escher’s tableau of black and white chevaliers.   
+%\end{columns}
+\end{frame}
+
 %%%
+
+\begin{frame}{Majorana neutrinos \& a recipe for the Universe}
+\includegraphics[scale=0.40]{Universe.png}
+\end{frame}
+
+%%
+
+\begin{frame}{Majorana neutrinos are double agents}
+\includegraphics[scale=0.112]{doubleAgent.png}
+\end{frame}
+
 
 \begin{frame}{Are neutrinos Majorana Particles?}
 
@@ -187,9 +192,11 @@ $\bullet~$ Give a qualitative argument (using neutrino helicity) to argue that t
 %%%
 
 \begin{frame}{Nuclear Matrix Elements and Phase Space}
+\begin{figure}
+\includegraphics[scale=0.20]{nme2.png}
+\caption{1. NME and Phase Space for several isotopes}
 
-\includegraphics[scale=0.25]{nme2.png}
-
+\end{figure}
 \end{frame}
 
 %%%
@@ -203,7 +210,7 @@ $\bullet~$ Suppose that you have established a limit for the lifetime of a given
 \mbbsq = \frac{\tonu}{\gonu\cdot\monu}
 \]
 
-From the figures in (1/8), use QRPA (red bars) to estimate the central value and the error of \gonu\ and \monu\ for \GE\, \TE\ and \XE\ and \MO\. Then obtain the uncertainty in \mbb\ for 
+From the data in figure 1, use QRPA (red bars) to estimate the central value and the error of \gonu\ and \monu\ for \GE\, \TE\ and \XE\ and \MO\. Then obtain the uncertainty in \mbb\ for 
 $\tonu \sim 10^{27}$~y and $\tonu \sim 10^{28}$~y. Which range of \mbb\ do you obtain? What do you conclude?
 
 \end{frame}
@@ -362,8 +369,10 @@ $\bullet~$ Of course, often enough one condition is, at least partially, add odd
 \begin{frame}{Rates in the absence of backgrounds}
 \begin{columns}
 \column{0.50\textwidth}
+\begin{figure}
 \includegraphics[scale=0.43]{ratesbb0nu.png}
-
+\caption{2. Rates in the absence of background}
+\end{figure}
 
  \column{0.50\textwidth}
 $\bullet~$ Rates depend on isotope (and on assumptions on NME). 
@@ -380,7 +389,7 @@ $\bullet~$ Differences between different isotopes is relevant, but differences b
 %%%
 \begin{frame}{Exercise 3}
 
-$\bullet~$ Obtain the plot in previous transparency (1/14), for \XE, \GE. \TE, and \MO. To do this, write
+$\bullet~$ Obtain the plot in figure 2, for \XE, \GE. \TE, and \MO. To do this, write
 \[
 N_{\bbonu} = \log{2} \frac{M_{\beta\beta} N_A}{W_{\beta\beta}}\cdot t \cdot \tonu
 \]
@@ -464,25 +473,26 @@ $\bullet~$ All \bbonu\  experiment must use materials with extremely low amounts
 
 \begin{frame}{Exercise 4}
 
-$\bullet~$ Let us build a toy detector based on high pressure xenon. The pressure vessel will be made of low-radioactivity steel. The best such materials have activities in the chain of
-${}^{238}$U and ${}^{232}$Th of the order o 1 mBq/kg. Assume that your pressure vessel is a cylinder with walls (and end-caps) 2 cm thick. Design the dimensions of the pressure vessel to contain one ton of xenon at 20 bar. Then, compute the mass of your vessel and from that the total activity. 
+$\bullet~$ Let us build a toy detector based on xenon. The vessel will be made of ultra-low radioactivity copper. The best such materials have activities in the chain of
+${}^{238}$U of the order o 3 $\mu$Bq/kg. Assume that your pressure vessel is a cylinder with walls (and end-caps) 10 cm thick. Design the dimensions of the pressure vessel to contain one ton of xenon at 20 bar and one one of LXe. Then, compute the mass of your vessel and from that the total activity (in both cases). 
 
-$\bullet~$ Refine your calculation computing only the activity that enters the active xenon volume. This means that you need to take into account geometrical and self-shielding effects. Write a small Monte Carlo to do the calculation and (or) use Geant4.
+$\bullet~$ Refine your calculation computing only the activity that enters the active xenon volume. This means that you need to take into account geometrical and self-shielding effects. Write a small Monte Carlo to do the calculation or use analytical approximations.
 
 $\bullet~$ Which activity do you get? What do you conclude from there?
 \end{frame}
 
-\begin{frame}{Exercise 5}
+%\begin{frame}{Exercise 5}
+%
+%$\bullet~$ Assuming that your material is in equilibrium, all decays of ${}^{238}$U will lead to
+%${}^{214}$Bi. About 1.5 \% of ${}^{214}$Bi decays will produce a gamma of energy 2.48 MeV, which is very close to \XE\ \qbb\ and thus becomes a very dangerous background. Assuming the activity in the steel in the exercise 4, you can compute now the total number of gammas of 2.48 MeV that cross the xenon volume. A fraction of those gammas will interact in the gas. You can compute that fraction using the NIST (\url{https://www.nist.gov/pml/x-ray-and-gamma-ray-data}) tables or Geant4. How many interactions do you get? What do you conclude?
+%
+%\end{frame}
 
-$\bullet~$ Assuming that your material is in equilibrium, all decays of ${}^{238}$U will lead to
-${}^{214}$Bi. About 1.5 \% of ${}^{214}$Bi decays will produce a gamma of energy 2.48 MeV, which is very close to \XE\ \qbb\ and thus becomes a very dangerous background. Assuming the activity in the steel in the exercise 4, you can compute now the total number of gammas of 2.48 MeV that cross the xenon volume. A fraction of those gammas will interact in the gas. You can compute that fraction using the NIST (\url{https://www.nist.gov/pml/x-ray-and-gamma-ray-data}) tables or Geant4. How many interactions do you get? What do you conclude?
-
-\end{frame}
-
-\begin{frame}{Lonely Harts sorrows (2)}
+\begin{frame}{Radioactive Earth}
 \begin{columns}
 \column{0.50\textwidth}
-\includegraphics[scale=0.20]{radioactiveEarth.png}
+%\includegraphics[scale=0.20]{radioactiveEarth.png}
+\includegraphics[scale=0.40]{rchains.png}
 
  \column{0.50\textwidth}
 $\bullet~$ Earth is a very radioactive planet. There is about 2-3 grams of U/Th per ton of rock. Everything, with the exception of ultra-pure metals tend to be more radioactive than \bbonu\ experiments can tolerate.   
@@ -503,7 +513,7 @@ $\bullet~$ A priory one could design an experiment in which source and detector 
 
 $\bullet~$ The idea was then extended to the Super-Nemo detector, as in the figure. Each module of SN holds about 10 kg of isotope. 
 
-$\bullet~$ Explain the advantages and disadvantages of the technique, in particular to reach a sensitivity of around $10^{27}$~y.   
+$\bullet~$ {\bf Exercize 5}. Explain the advantages and disadvantages of the technique, in particular to reach a sensitivity of around $10^{27}$~y.   
 
 \end{columns}
 \end{frame}
@@ -516,8 +526,8 @@ $\bullet~$ Background-free experiment: consider an almost ideal experiment, capa
 
 $\bullet~$ Where $W$ is the molar mass, $N_A$ is the Avogadro number, \gonu\ is the phase space factor and \monu\ the NME for the isotope. 
 
-$\bullet~$ {\bf Exercise 7}: Obtain limits for \XE\, \TE\, \GE\ and \MO. In each case assume
-$M \cdot t = 1$~ton$\cdot$yr, and $\epsilon =1$ (truly ideal detector). 
+$\bullet~$ {\bf Exercise 6}: Obtain limits for \XE\, \TE\, \GE\ and \MO. In each case assume
+$M \cdot t = 1$~ton$\cdot$yr (do it also for $M \cdot t = 10$~ton$\cdot$yr) , and $\epsilon =1$ (truly ideal detector). 
 \end{frame}
 
 
@@ -549,7 +559,7 @@ $\bullet~$ The $\alpha$ term depends on the physical properties of the isotope.
  
  $\bullet~$ Since $N_A$ is constant, $\alpha \propto W/(\gonu\monu)$. Notice that one would like to select isotopes as light as possible (small $W$) with phase space and NME as large as possible. 
  
- $\bullet~$ {\bf Exercise 8}: Compute $\alpha$ for \XE\, \TE\, \GE\ and \MO. 
+ $\bullet~$ {\bf Exercise 7}: Compute $\alpha$ for \XE\, \TE\, \GE\ and \MO. 
  \end{frame}
  
  %%%%
@@ -559,7 +569,7 @@ $\bullet~$ The $\beta$ term depends on the experimental technique. Notice that t
 
  $\bullet~$ On the other hand, notice that the selection efficiency enters the formula with a square, motivating experimental techniques with $\epsilon \sim 1$. 
  
- $\bullet~$ Not all parameters can be optimised at the same time. Notice that a possible approach is to go for very large masses (KamLAND-Zen, SNO+), while another is to bet on extremely good energy resolution (GERDA). Other experiments may try a combination of the three parameters (NEXT, NEXO, CUPID). One can even, conceivably try an approach in which $c \sim 0$ (NEXT-BOLD). 
+ $\bullet~$ Not all parameters can be optimised at the same time. Notice that a possible approach is to go for very large masses (KamLAND-Zen, SNO+), while another is to bet on extremely good energy resolution (GERDA/LEGEND). Other experiments may try a combination of the three parameters (NEXT, NEXO, CUPID). One can even, conceivably try an approach in which $c \sim 0$ (NEXT-BOLD). 
  
  \end{frame}
  
@@ -569,7 +579,10 @@ $\bullet~$ The $\beta$ term depends on the experimental technique. Notice that t
  
  \begin{columns}
 \column{0.50\textwidth}
+\begin{figure}
 \includegraphics[scale=0.28]{ gesensi.png}
+\caption{3. Sensitivity of \GE\ experiment as a function of the background rate}
+\end{figure}
 
  \column{0.50\textwidth}
 $\bullet~$ Notice that the sensitivity of the experiment only improves with (1/4)th power, that is extremely slowly. In other words, for a given target on sensitivity, experiments must attempt to reach a ``background free" regime, or pay dearly in exposure as clearly seen in the graphics.
@@ -578,8 +591,23 @@ $\bullet~$ A background free Ge experiment, ``Legend-like", would reach a sensit
 \end{columns}
 \end{frame}
 
-\begin{frame}{Exercise 9}
+\begin{frame}{Exercise 8}
 $\bullet~$ Reproduce the plot in the previous transparency for the four isotopes that we are considering (assume $\epsilon =1$ for all of them). 
+\end{frame}
+
+\begin{frame}{How to build the next generation of \bbonu\ experiments}
+$\bullet~$ Figure 3 disclosures the best kept secrets of the business (do not tell funding agencies or prospective graduate students).
+ 
+ $\bullet~$ {\bf The secret}: Reaching a sensitivity of $\tonu \sim 10^{27}$ requires an exposure of several ton$\cdot$year, with a tolerance of about 1 background event per year in the ROI.
+ 
+ $\bullet~$ {\bf The Uber-secret}: Reaching a sensitivity of $\tonu \sim 10^{28}$ requires an exposure of several tens of ton$\cdot$year, with a tolerance of about 0.1 background event per year in the ROI.
+ 
+ $\bullet~$ {\bf Old Spanish Wisdom}: Impossible things are those that require a miracle. Truly impossible things are those that cannot be done even by miracle. And then, there are \bbonu\ searches.
+ 
+ \end{frame}
+ 
+ \begin{frame}{Exercise 9}
+$\bullet~$ As we have discussed, our uber-experiment to search for \bbonu\ can tolerate about 1 (0.1) events of background per year in the ROI. Discuss how to evaluate the error on that quantity. What should be the order of magnitude of the error in each case?
 \end{frame}
  
 

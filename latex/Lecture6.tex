@@ -22,7 +22,7 @@
 
 \title[]{\vspace{60pt} \\
 Liquid Times} % Change the lecture topic right here!
-\subtitle{The nEXO way}
+\subtitle{The EXO/nEXO way}
 \author[]{J.J. Gómez Cadenas}
 \institute[]{Donostia International Physics Center}
 \date{\today}
@@ -168,7 +168,7 @@ $\bullet~$ {\bf Single-phase disadvantages}: no amplification of \st, thus highe
 \column{0.50\textwidth}
 $\bullet~$ {\bf asymmetric advantage}: Grids (thus radon decays) in the edges of the fiducial volume (unlike the case of NEXT, where the gas is rather transparent, this is a must, otherwise shielding inefficient). 
 
-$\bullet~$ {\bf asymmetric disadvantages}: Double drift distance and potencial at the cathode.  
+$\bullet~$ {\bf asymmetric disadvantages}: Double drift distance and potencial at the cathode (significant amount of LXe lost in buffer).  
 \end{columns}
 \end{frame}
 
@@ -187,27 +187,34 @@ $\bullet~$ {\bf Exercise}: Why not a BFD like NEXT-HD?
 \end{frame}
 %%%%
 
-\begin{frame}{Gamma attenuation in LXe}
-\begin{columns}
-\column{0.50\textwidth}
-\includegraphics[scale=0.2]{attLxe.png}
+%\begin{frame}{Gamma attenuation in LXe}
+%\begin{columns}
+%\column{0.50\textwidth}
+%\includegraphics[scale=0.2]{attLxe.png}
+%
+%$\bullet~$ Consider a LXe TPC with $L = 125$~ cm and $D = 116$~ cm (e.g, similar to nEXO). It will host 4.1 tons of LXe.
+%
+%$\bullet~$ Define a fiducial region as a volume, centred in the TPC of 
+%$l = 86$~ cm and $d = 71$~ cm. It will host $\sim$1 ton of LXe
+%
+%\column{0.50\textwidth}
+%$\bullet~$ The shielding length for gammas emitted from the end-caps is 
+%$Z = (L - l)/2 = 19.5$~cm, and $R = (D-d)/2 = 22$~cm.  
+%
+%$\bullet~$ The fraction of the gamma flux emitted from the envelop interacting along the longitudinal axis is:  $ e^{-Z/\lambda_{att}}$
+%
+%$\bullet~$  In LXe: $\lambda_{att} = 8.7~$ cm. Then $e^{-19.5/8.5} = 0.1$.
+% 
+% $\bullet~$ Take away: shielding provides one order of magnitude rejection to the worst type of gammas (those coming from \BI) with an efficiency of 20\%. 
+%\end{columns}
+%\end{frame}
 
-$\bullet~$ Consider a LXe TPC with $L = 125$~ cm and $D = 116$~ cm (e.g, similar to nEXO). It will host 4.1 tons of LXe.
-
-$\bullet~$ Define a fiducial region as a volume, centred in the TPC of 
-$l = 86$~ cm and $d = 71$~ cm. It will host $\sim$1 ton of LXe
-
-\column{0.50\textwidth}
-$\bullet~$ The shielding length for gammas emitted from the end-caps is 
-$Z = (L - l)/2 = 19.5$~cm, and $R = (D-d)/2 = 22$~cm.  
-
-$\bullet~$ The fraction of the gamma flux emitted from the envelop interacting along the longitudinal axis is:  $ e^{-Z/\lambda_{att}}$
-
-$\bullet~$  In LXe: $\lambda_{att} = 8.7~$ cm. Then $e^{-19.5/8.5} = 0.1$.
- 
- $\bullet~$ Take away: shielding provides one order of magnitude rejection to the worst type of gammas (those coming from \BI) with an efficiency of 20\%. 
-\end{columns}
+\begin{frame}{Self-shielding in LXe}
+%\begin{columns}
+%\column{0.60\textwidth}
+\includegraphics[scale=0.35]{self-shielding-lxe.png}
 \end{frame}
+
 
 \begin{frame}{Energy resolution in LXe}
 %\begin{columns}
@@ -218,6 +225,7 @@ $\bullet~$  In LXe: $\lambda_{att} = 8.7~$ cm. Then $e^{-19.5/8.5} = 0.1$.
 %\column{0.40\textwidth}
 $\bullet~$ Using anti-correlation between scintillation and ionisation yields a good combined energy resolution. EXO measured $\sigma = 1.15$\% at 2.6 MeV. This translates into  
 $\sigma_{FWHM} = 3.5$\% at \qbb.  
+$\bullet~$ Energy resolution can be improved with better light collection: nEXO expects 2.2\% at \qbb. 
 
 %\end{columns}
 \end{frame}
@@ -232,11 +240,60 @@ $\sigma_{FWHM} = 3.5$\% at \qbb.
 \column{0.50\textwidth}
 $\bullet~$ A LXe TPC has the capability to separate single-site from multi-site events.  
 
-$\bullet~$ This is extremely useful to reject pile-up events from low-energy gammas, but not so much for the critical backgrounds associated to \BI\ and \TL. In particular, in the case of \BI, the background event is a bona-fie photoelectric event, which produces a single-site. A LXe cannot separate between single and double electrons, and thus it depends on energy resolution to separate this background from signal.  
+$\bullet~$ This is extremely useful to reject pile-up events from low-energy gammas, as well as Compton interactions of the  \BI\ and \TL\ $\gamma$'s when the second blob can be identified.   
 
 \end{columns}
 \end{frame}
 %%%
+
+\begin{frame}{LXe handles to suppress backgrounds}
+%\begin{columns}
+%\column{0.60\textwidth}
+\includegraphics[scale=0.35]{nexto-tools.png}
+
+$\bullet~$ Energy resolution is good enough to suppress \bbtnu\ as well as to reduce many other backgrounds (including, notably the one due to \TL\ or the internal background due to \XES). Not 
+enough to help in the case of \BI\ (topology is not useful either to suppress the photoelectric interactions of the \BI\ gamma of 2447 keV). This represents the ``worst case'' background for LXe (and also for GXe) and we will study it in our Research Project. 
+\end{frame}
+
+\begin{frame}{EXO}
+\includegraphics[scale=0.40]{exo.png}
+\end{frame}
+
+\begin{frame}{EXO TPC}
+\includegraphics[scale=0.40]{exo-tpc.png}
+\end{frame}
+
+\begin{frame}{EXO TPC}
+\includegraphics[scale=0.40]{apds.png}
+\end{frame}
+
+\begin{frame}{EXO Spectrum}
+\begin{columns}
+\column{0.70\textwidth}
+\includegraphics[scale=0.40]{exo-spectrum.tex}
+\column{0.30\textwidth}
+$\bullet~$ Notice that the MS (multiple side) data can be used to characterise backgrounds.  
+
+$\bullet~$ SS data corresponds to signal (plus backgrounds that mimic it).   
+
+\end{columns}
+\end{frame}
+
+%nexo-sensors.png
+%0.7 % sigma at 2614
+\begin{frame}{EXO: Search for \bbonu}
+\begin{columns}
+\column{0.70\textwidth}
+\includegraphics[scale=0.35]{exo-fit.png}
+\column{0.30\textwidth}
+$\bullet~$ Assuming 100 kg (fiducial mass) and a resolution of 3.5\% this implies about 6 events in
+1 $\sigma~$ ROI.   
+
+$\bullet~$ nEXO's goal is to reduce this background by one order of magnitude while increasing the fiducial mass also by an order of magnitude (the total mass is increased by 25).    
+
+\end{columns}
+\end{frame}
+
 
 \begin{frame}{From EXO to nEXO}
 \includegraphics[scale=0.30]{exonexo.png}
@@ -302,7 +359,12 @@ $\bullet~$ Lots of common ground here between NEXT and nEXO (copper, resistors, 
 \includegraphics[scale=0.30]{nexoHandles.png}
 \includegraphics[scale=0.30]{nextSignatures.png}
 
-$\bullet~$ (not so) Different strategies.   
+$\bullet~$ Both detectors use energy resolution and topology as handles. 
+ 
+ $\bullet~$nEXO golden handle: self-shielding.
+ 
+ $\bullet~$NEXT  golden handle: Excellent energy resolution and two-electron identification. 
+   
 \end{frame}
 
 

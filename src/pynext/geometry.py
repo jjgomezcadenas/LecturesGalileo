@@ -318,7 +318,7 @@ def generate_and_transport_gammas_lxe_shell(c1 : Cylinder, c2 : Cylinder,
 
     WF = []
     DST = []
-    latt = 85 # mm, Xenon Latt
+    latt = 87 # mm, Xenon Latt
     for p in P:
         if verbose >1:
             print(f"Point = {p}, r= {np.sqrt(p[0]**2 + p[1]**2)}, z = {p[2]}")
@@ -449,7 +449,7 @@ def generate_and_transport_gammas_lxe_endcaps(c1 : Cylinder, c2 : Cylinder,
 
     WF = []
     DST = []
-    latt = 85 # mm, Xenon Latt
+    latt = 87 # mm, Xenon Latt
     for p in P:
         if verbose >1:
             print(f"Point = {p}, r= {np.sqrt(p[0]**2 + p[1]**2)}, z = {p[2]}")
@@ -542,6 +542,130 @@ def generate_and_transport_gammas_lxe_endcaps(c1 : Cylinder, c2 : Cylinder,
         WF.append(W/den)
     return WF, DST
 
+
+def generate_and_transport_gammas_gxe_shell(c1 : Cylinder,  
+                                       nphotons: int=10, ndx: int= 100, 
+                                       solidAngle="half",
+                                       verbose=0, drawRays=True, scale=10)->np.array:
+    """
+    This function propagates gammas emited from the surface of c1 (shell) until they exit 
+    the cylinder c1, computing their length and assigning them a weight proportional to it.
+    
+
+    The technique is as follows:
+    1. Generate random points in the surface of cylinder c1. This corresponds to 
+    gamma emiters in the "background" layer represented by c1.
+
+    2. For each point (gamma emiter), generate random directions. 
+       If solidAngle = 'half', count only those photons that point inwards from c1 shell. 
+       This case corresponds to situations in which the "background layer" corresponds to 
+       a self-shielded volume (like a copper shield), such that only gammas going inwards are counted
+       (e.g., the activity of the layer corresponds to gammas going into the detector).
+       If solidAngle = 'full' count all photons (this is a normal layer without self-shielding)
+
+    3. shoot a photon with the generated direction (only if inwards), and propagate through the cylinder
+     until it exists through the shell or the end-caps. Compute the distance d they travel and
+     assign them a weight exp(-d/latt), where d is the distance
+    travelled by the gamma and latt = 285.2 cm is the attenuation length of xenon at 15 bar. 
+    
+
+    All units assumed to be in mm
+
+    """
+
+    def draw_rays(e, r):
+        tt = np.linspace(0, scale, 100)
+        xi = e[0] + tt * r[0]
+        yi = e[1] + tt * r[1]
+        zi = e[2] + tt * r[2]
+        ax.plot(xi, yi, zi)
+                
+    n = int(nphotons)
+
+    if verbose > 0:
+        print(f"c1 ={c1}")
+       
+
+    fig = plt.figure(figsize=(6,6))
+    ax=plt.subplot(111, projection='3d')
+    draw_cylynder_surface(c1, ax)
+
+    P = generate_random_points_cylinder_shell(c1, n)
+    xi,yi,zi = xyz_from_points(P)
+    ax.scatter(xi, yi, zi, s=5, c='k', zorder=10)
+
+    WF = []
+    DST = []
+    latt = 2900 # mm, Xenon Latt
+    for p in P:
+        if verbose >1:
+            print(f"Point = {p}, r= {np.sqrt(p[0]**2 + p[1]**2)}, z = {p[2]}")
+        W = 0
+        icd = 0
+        icr = 0
+        icz = 0
+        ice = 0
+        ict = 0
+
+        # generate directions:
+        D = vectors_spherical(ndx)
+
+        # loop over directions
+        for d in D:
+            fce = False  # end-cap fiducial
+            fct = False  # end-cap transport
+
+            nx = c1.normal_to_barrel(p) # gamma must go inwards
+            if np.dot(nx,d) > 0:
+                icd+=1
+                continue
+                
+            r = Ray(p,d)
+            t, pt = ray_intersection_with_cylinder(r, c1)
+            if t <=0:       # must intersect cylinder
+                icr+=1
+                continue    # loop away if does not intersect cylinder
+
+            if pt[2] < c1.zmin or pt[2] > c1.zmax: # outside z bounds
+
+                # does it intercept the end-cap?
+                t2, pt2 = ray_intersection_with_cylinder_end_caps(r, c1, t)
+                if t2 <=0:       # must intersect cylinder
+                    icz+=1
+                    continue    # loop away if does not intersect end-cap
+                
+                if pt2[2] < c1.zmin or pt2[2] > c1.zmax: # outside z bounds
+                    ice+=1
+                    continue    # loop away if does not intersect end-cap
+                fce = True
+            else:
+                fct = True
+
+            if drawRays:
+                draw_rays(p, d)
+
+            if fct:
+                dx = np.linalg.norm(p - pt) # distance traveled to end-cap
+            elif fce: 
+                dx = np.linalg.norm(p - pt2) # distance traveled to shell
+            else:
+                continue
+                
+            
+            DST.append(dx)
+            wx = np.exp(-dx/latt)       # attenuation
+            
+            if verbose >2:
+                print(f"d= {d}, distance = {dx}, wx = {wx}")
+                
+            W+=wx
+        
+        if solidAngle=="half":
+            den = ndx - icd
+        else:
+            den = ndx
+        WF.append(W/den)
+    return WF, DST
 
 
 ## Graphics
