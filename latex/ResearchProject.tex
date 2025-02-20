@@ -1,0 +1,208 @@
+\documentclass [aspectratio=169]{beamer}
+\beamertemplatenavigationsymbolsempty
+\usetheme{Boadilla}
+\usepackage{textpos} % package for the positioning
+\usepackage[]{graphicx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{algorithm,algpseudocode}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usepackage[square,numbers]{natbib}
+\usepackage[byname]{smartref}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows, shapes, decorations, automata, backgrounds, fit, petri, calc}
+
+\newcommand*{\logofont}{\fontfamily{phv}\selectfont}
+
+\definecolor{uwopurple}{RGB}{79,38,131} % official purple color for uwo
+
+\title[]{\vspace{60pt} \\
+Research Project} % Change the lecture topic right here!
+\subtitle{Estimation of \BI\ background in LXe and HPXe detectors}
+\author[]{J.J. Gómez Cadenas}
+\institute[]{Donostia International Physics Center}
+\date{\today}
+
+% Math notations
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Exercise}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{rmk}[thm]{Remark}
+
+\newcommand{\ie}{\emph{i.e.} }
+\newcommand{\cf}{\emph{cf.} }
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\dirac}{\slashed{\partial}}
+\newcommand{\bbonu}{\ensuremath{\beta\beta0\nu}}
+\newcommand{\bbtnu}{\ensuremath{\beta\beta2\nu}}
+\newcommand{\mbb}{\ensuremath{m_{\beta\beta}}}
+\newcommand{\qbb}{\ensuremath{Q_{\beta\beta}}}
+\newcommand{\mbbsq}{\ensuremath{m_{\beta\beta}^2}}
+\newcommand{\tonu}{\ensuremath{(T_{1/2}^{0\nu})^{-1}}}
+\newcommand{\gonu}{\ensuremath{G^{0\nu}}}
+\newcommand{\monu}{\ensuremath{| M^{0\nu}|^2}}
+\newcommand{\XE}{\ensuremath{{}^{136}{\rm Xe}}}
+\newcommand{\XES}{\ensuremath{{}^{137}{\rm Xe}}}
+\newcommand{\GE}{\ensuremath{{}^{76}{\rm Ge}}}
+\newcommand{\TE}{\ensuremath{{}^{130}{\rm Te}}}
+\newcommand{\TL}{\ensuremath{{}^{208}{\rm Tl}}}
+\newcommand{\BI}{\ensuremath{{}^{214}{\rm Bi}}}
+\newcommand{\MO}{\ensuremath{{}^{100}{\rm Mo}}}
+\newcommand{\KR}{\ensuremath{{}^{83}{\rm Kr}}}
+\newcommand{\nne}{\ensuremath{\bar{N}_e}}
+\newcommand{\nng}{\ensuremath{\bar{N}_\gamma}}
+\newcommand{\so}{\ensuremath{\rm S_1}}
+\newcommand{\st}{\ensuremath{\rm S_2}}
+\newcommand{\tz}{\ensuremath{\rm t_0}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\LieT}{\mathfrak{t}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\A}{\mathds{A}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\Var}{\text{Var}}
+\newcommand\equalhat{%
+\let\savearraystretch\arraystretch
+\renewcommand\arraystretch{0.3}
+\begin{array}{c}
+\stretchto{
+    \scalerel*[\widthof{=}]{\wedge}
+    {\rule{1ex}{3ex}}%
+}{0.5ex}\\ 
+=%
+\end{array}
+\let\arraystretch\savearraystretch
+}
+
+% set color
+\setbeamercolor{title in head/foot}{bg=white}
+\setbeamercolor{author in head/foot}{bg=white}
+\setbeamercolor{date in head/foot}{fg=uwopurple}
+\setbeamercolor{date in head/foot}{bg=white}
+\setbeamercolor{title}{fg=uwopurple}
+\setbeamerfont{title}{series=\bfseries}
+\setbeamercolor{frametitle}{fg=uwopurple}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamercolor{block title}{bg=uwopurple!30,fg=black}
+\setbeamercolor{item}{fg=uwopurple}
+\setbeamercolor{caption name}{fg=uwopurple!70!}
+
+
+% set logo at non-title pages
+%\logo{\includegraphics[height=0.9cm]{dipc.png}\vspace*{-.45\paperheight}\hspace*{.50\paperwidth}}
+
+\begin{document}
+
+{
+\setbeamertemplate{logo}{}
+\begin{frame}
+    \titlepage
+    \begin{textblock*}{4cm}(0.5cm,-7.3cm)
+        \includegraphics[width=4cm]{dipc.png}
+    \end{textblock*}
+    \begin{textblock*}{8cm}(5.0cm,-7.0cm)
+        \huge \color{uwopurple}{$\Bigr\rvert$ \hspace{0.15cm} \textbf{}} % Change the lecture # right here! 
+    \end{textblock*}
+\end{frame}
+}
+
+%%%%
+\begin{frame}{Definition of the problem}
+$\bullet~$In order to understand the performance of LXe (HPXe) detectors it is very useful to estimate the leading background in the ROI for a ton-scale detector with the nominal parameters (e.g., energy resolution) of nEXO/NEXT-HD.
+ 
+$\bullet~$One of the dominant backgrounds for both detectors is the $\gamma$ of 2447 keV emitted by \BI. Such gamma has a branching ratio of 1.5\% relative to all \BI\ decays, and its energy is only 10 keV smaller than \qbb.
+
+$\bullet~$Detectors like nEXO or NEXT-HD have many source of backgrounds reflected in their sophisticated background models. However, we can simplify the problem taking one of the leading sources of \BI\ background, namely the copper that is used to build nEXO vessel (and NEXT-HD inner copper shielding, or ICS). 
+
+$\bullet~$This is useful for two reasons: We can estimate in a reliable way the activity of the copper vessel/ICS for both idealised detectors and we can estimate how this activity is reduced by the handles of both apparatus. The (first order) calculations are straight-forward and do not require sophisticated Monte Carlos (a la Geant4).  
+\end{frame}
+
+\begin{frame}{Needed data}
+$\bullet~$We need to know the dimensions of the nEXO vessel and TPC, as well as the activity of \BI\ in the vessel. These data are available in \url{https://https://arxiv.org/abs/1805.11142}.
+
+$\bullet~$We need to know the dimensions of the NEXT-HD vessel and TPC, as well as the activity of \BI\ in the vessel. NEXT-HD is described in \url{https://arxiv.org/abs/2005.06467}. 
+
+$\bullet~$We also need to know the total (photoelectric) interaction cross section in LXe. These data are available from \url{https://physics.nist.gov/cgi-bin/Xcom/xcom3_1}
+\end{frame}
+
+\begin{frame}{Files}
+$\bullet~$Mass attenuation coefficients for xenon: {\em xe\_gamma\_att.csv}
+
+$\bullet~$Total and photoelectric cross section in xenon for gammas of 2.5 MeV: {\em cross\_sections.csv}
+%
+$\bullet~$Efficiency of signal vs efficiency of background for the topological signal in HPXe. {\em top\_sel.csv}
+\end{frame}
+
+
+\begin{frame}{Toy detectors}
+
+{\bf \large LXe}
+\vspace{3mm}
+
+$\bullet~$ {\bf TPC:} TPC\_D $=1180~$mm, TPC\_L $=1180~$mm
+
+$\bullet~$ {\bf TPC-Physics:} PHYS\_D $=750~$mm, PHYS\_L $=750~$mm
+
+$\bullet~$ {\bf TPC-Vessel:} PV\_D $=1727~$mm, PHYS\_L $=1277~$mm
+
+\vspace{3mm}
+
+{\bf \large HPXe}
+\vspace{3mm}
+
+$\bullet~$ {\bf TPC:} TPC\_D $=2500~$mm, TPC\_L $=2500~$mm
+
+$\bullet~$ {\bf TPC-Vessel:} PV\_D $=2620~$mm, PHYS\_L $=2620~$mm
+
+\subsection{Copper Radiopurity}
+$\bullet~$\BI: 3 $\mu$Bq/kq
+\end{frame}
+
+\begin{frame}{Algorithm (toy LXe)}
+
+$\bullet~$Compute the activity (self-shielded) of \BI\ in the copper vessel.
+
+$\bullet~$Obtain the number of gammas with energies 2.448 MeV emitted by Bi-214 (1.5 \%, see \url{https://www.nndc.bnl.gov/nudat3/decaysearchdirect.jsp?nuc=214Bi\&unc=NDS}
+
+$\bullet~$Propagate these gammas to the physics region in toy LXe (a central cylinder with a mass of 1 ton, dimensions above).
+
+$\bullet~$Weight the distance they travel by the attenuation factor $e^{-d/L_{att}}$, where $L_{att}$ can be computed from  \url{https://physics.nist.gov/cgi-bin/Xcom/xcom3_1}
+
+$\bullet~$Notice that the 2.448 MeV gammas from Bi-214  interacting photoelectric in the detector constitute cannot be separated by topology in LXe (since they are SS). Assuming nEXO target resolution (2.3 \%FWHM at \qbb), find out if you can use energy resolution for further separation of signa and noise (and at what cost on signal efficiency, quantify with a figure-of-merit, $S/\sqrt{B}$.
+\end{frame}
+
+\begin{frame}{Algorithm (toy HPXe)}
+
+$\bullet~$Compute the activity (self-shielded) of \BI\ in the copper vessel.
+
+$\bullet~$Obtain the number of gammas with energies 2.448 MeV emitted by Bi-214 (1.5 \%, see \url{https://www.nndc.bnl.gov/nudat3/decaysearchdirect.jsp?nuc=214Bi\&unc=NDS}
+
+$\bullet~$Propagate these gammas through the gas detector. Weight the distance they travel by the attenuation factor $e^{-d/L_{att}}$, where $L_{att}$ can be computed from  \url{https://physics.nist.gov/cgi-bin/Xcom/xcom3_1}
+
+$\bullet~$You still have two extra handles. One is the resolution (assume the target value for NEXT, 0.5\% FWHM at \qbb). The other is the topological signal, e.g., the ability to separate single electrons (from the interaction of the \BI\ gamma) from double electrons (use table above). 
+$\bullet~$ Compute your final background level and the cost in efficiency. 
+Quantify with a figure-of-merit, $S/\sqrt{B}$.
+\end{frame}
+
+\begin{frame}{Think Big}
+
+$\bullet~$ Repeat your calculations on LXe, this time assuming that you have a detector of 100 tons of natural xenon. (10\% of \XE, thus 10 tons of \XE\ distributed in the full volume). Design the size of the detector and the fiducial volume. Then, reverse the problem. Compute the number of events that you can tolerate in the ROI as a function of the \BI\ contamination in the ``envelop" surrounding the vessel (separate between end-cup and shell). 
+
+$\bullet~$ Large Dark Matter detectors claim a resolution at \qbb\ of $\sigma = 0.6$\%. Redo your calculations assuming they are right. 
+
+\end{frame}
+\end{document}
